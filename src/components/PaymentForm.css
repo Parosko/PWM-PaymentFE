@@ -1,12 +1,12 @@
-/* PaymentForm.css */
+/* PaymentForm.css - Light Theme */
 
 .payment-form-card {
-  background: #1e293b;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  background: #ffffff;
+  border: none;
+  border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  color: #f8fafc;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  color: #0f172a;
 }
 
 .form-header {
@@ -16,107 +16,22 @@
 .form-title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 6px 0;
+  color: #0f172a;
+  margin: 0 0 4px 0;
   letter-spacing: -0.3px;
 }
 
 .form-subtitle {
   font-size: 0.85rem;
-  color: #94a3b8;
-  margin: 0;
-}
-
-/* Section Test Cards Quick Fill */
-.test-cards-section {
-  margin-bottom: 24px;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: 12px;
-  padding: 14px 16px;
-}
-
-.test-cards-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.test-cards-title {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #38bdf8;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.test-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-}
-
-.test-card-btn {
-  background: #0f172a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 8px 10px;
-  color: #cbd5e1;
-  font-family: inherit;
-  font-size: 0.75rem;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.test-card-btn:hover {
-  background: #334155;
-  border-color: #38bdf8;
-  color: #ffffff;
-}
-
-.test-card-btn-name {
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.badge-valid {
-  font-size: 0.65rem;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: rgba(34, 197, 94, 0.2);
-  color: #4ade80;
-  border: 1px solid rgba(34, 197, 94, 0.3);
-}
-
-.badge-invalid {
-  font-size: 0.65rem;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: rgba(239, 68, 68, 0.2);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-.test-card-btn-desc {
-  font-size: 0.68rem;
   color: #64748b;
+  margin: 0;
 }
 
 /* Form Elements */
 .payment-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .form-field {
@@ -134,10 +49,7 @@
 .form-label {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #cbd5e1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  color: #334155;
 }
 
 .form-input-wrapper {
@@ -148,126 +60,92 @@
 
 .form-input {
   width: 100%;
-  background: #0f172a;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
   border-radius: 10px;
   padding: 12px 14px;
   font-family: 'Poppins', sans-serif;
   font-size: 0.92rem;
-  color: #ffffff;
+  color: #0f172a;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
 }
 
 .form-input::placeholder {
-  color: #475569;
+  color: #94a3b8;
 }
 
 .form-input:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+  border-color: #0f172a;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
 }
 
 .form-input.has-error {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
-}
-
-.input-brand-badge {
-  position: absolute;
-  right: 12px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  pointer-events: none;
-}
-
-.brand-visa {
-  background: #1e3a8a;
-  color: #93c5fd;
-  border: 1px solid #3b82f6;
-}
-
-.brand-mastercard {
-  background: #7c2d12;
-  color: #fdba74;
-  border: 1px solid #f97316;
+  border-color: #dc2626;
+  background: #fef2f2;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
 }
 
 /* Message Error */
 .error-message {
   font-size: 0.75rem;
-  color: #f87171;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  color: #dc2626;
   margin-top: 2px;
-  animation: fadeIn 0.2s ease-in-out;
 }
 
-/* Submit Button */
+/* Submit Button - Elegant Charcoal Slate */
 .submit-btn {
-  margin-top: 10px;
+  margin-top: 8px;
   width: 100%;
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  background: #0f172a;
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   padding: 14px;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
-  transition: all 0.25 ease;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
 }
 
 .submit-btn:hover {
-  background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+  background: #1e293b;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
   transform: translateY(-1px);
 }
 
 .submit-btn:active {
   transform: translateY(1px);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
 
 /* Status Result Banner */
 .status-banner {
-  margin-top: 18px;
-  padding: 14px 16px;
-  border-radius: 10px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
   font-size: 0.85rem;
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  animation: fadeIn 0.3s ease;
+  gap: 8px;
 }
 
 .status-success {
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #4ade80;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
 }
 
 .status-error {
-  background: rgba(239, 68, 68, 0.12);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #f87171;
-}
-
-.status-icon {
-  font-size: 1.1rem;
-  line-height: 1;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
 }
 
 .status-text {
@@ -279,24 +157,13 @@
   margin-bottom: 2px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 480px) {
   .payment-form-card {
     padding: 20px;
   }
   .form-row {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
   .test-cards-grid {
     grid-template-columns: 1fr;

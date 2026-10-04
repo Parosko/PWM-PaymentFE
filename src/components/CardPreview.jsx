@@ -1,17 +1,7 @@
 import React from 'react';
 import './CardPreview.css';
 
-interface CardPreviewProps {
-  cardNumber: string;
-  cardHolder: string;
-  expiryDate: string;
-  cvv: string;
-  cardType: 'VISA' | 'MASTERCARD' | 'CARD';
-  isFlipped: boolean;
-  onFlipToggle: () => void;
-}
-
-export const CardPreview: React.FC<CardPreviewProps> = ({
+export const CardPreview = ({
   cardNumber,
   cardHolder,
   expiryDate,
@@ -20,12 +10,11 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
   isFlipped,
   onFlipToggle
 }) => {
-  // Format tampilan nomor kartu di kartu depan
+  // Format tampilan nomor kartu di bagian depan
   const renderCardNumber = () => {
     if (!cardNumber) {
       return <span className="card-number-placeholder">•••• •••• •••• ••••</span>;
     }
-    // Isi sisa digit dengan pelengkap titik jika belum 16 digit
     const cleanDigits = cardNumber.replace(/\D/g, '');
     const padded = cleanDigits.padEnd(16, '•');
     const formatted = padded.match(/.{1,4}/g)?.join(' ') || padded;
@@ -42,7 +31,7 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
 
   // Nomor kartu termask pada bagian belakang kartu
   const renderMaskedBackNumber = () => {
-    const clean = cardNumber.replace(/\D/g, '');
+    const clean = (cardNumber || '').replace(/\D/g, '');
     if (clean.length === 16) {
       return `XXXX XXXX XXXX ${clean.slice(12)}`;
     }
@@ -53,7 +42,6 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
     <div className="card-preview-container">
       {/* Petunjuk Klik Kartu */}
       <div className="card-hint" onClick={onFlipToggle} role="button" tabIndex={0}>
-        <span className="card-hint-icon">🔄</span>
         <span>Click card to flip ({isFlipped ? 'Back View' : 'Front View'})</span>
       </div>
 
@@ -116,14 +104,14 @@ export const CardPreview: React.FC<CardPreviewProps> = ({
             <div className="card-holder-group">
               <div className="card-label">CARD HOLDER</div>
               <div className="card-value">
-                {cardHolder.trim() ? cardHolder.toUpperCase() : 'CARD HOLDER'}
+                {cardHolder && cardHolder.trim() ? cardHolder.toUpperCase() : 'CARD HOLDER'}
               </div>
             </div>
 
             <div className="expiry-group">
               <div className="card-label">VALID THRU</div>
               <div className="card-value">
-                {expiryDate.trim() ? expiryDate : 'MM/YY'}
+                {expiryDate && expiryDate.trim() ? expiryDate : 'MM/YY'}
               </div>
             </div>
           </div>
