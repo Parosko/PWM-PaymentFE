@@ -1,0 +1,391 @@
+/* CardPreview.css */
+
+/* Container dengan 3D Perspective */
+.card-preview-container {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.card-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.card-hint:hover {
+  color: #38bdf8;
+}
+
+.card-hint-icon {
+  font-size: 1rem;
+}
+
+/* Inner 3D Card Element */
+.payment-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.586 / 1; /* Standard credit card aspect ratio (85.6mm x 53.98mm) */
+  border-radius: 18px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4),
+              0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+.payment-card:hover {
+  transform: translateY(-4px) rotateX(4deg) rotateY(4deg);
+  box-shadow: 0 22px 45px -8px rgba(0, 0, 0, 0.5),
+              0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+.payment-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.payment-card.flipped:hover {
+  transform: rotateY(180deg) translateY(-4px) rotateX(4deg);
+}
+
+/* Masing-masing Sisi Kartu (Depan & Belakang) */
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 26px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #090d16 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Background texture & Ambient Overlay */
+.card-face::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 75% 25%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
+              radial-gradient(circle at 25% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+/* Hologram / Shine Effect Overlay */
+.card-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 45%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* KARTU DEPAN */
+.card-front {
+  transform: rotateY(0deg);
+}
+
+/* Header Kartu Depan: Chip, Contactless, & Logo Kartu */
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.chip-and-wave {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Chip EMV buatan CSS */
+.card-chip {
+  width: 44px;
+  height: 32px;
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 50%, #f59e0b 100%);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Grid Line pada Chip */
+.card-chip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.card-chip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.chip-inner-line {
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+/* Contactless Icon */
+.contactless-icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Logo Brand Kartu */
+.card-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 32px;
+}
+
+.brand-text {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  font-style: italic;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Logo Visa */
+.visa-logo {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  font-style: italic;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 60%, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Logo Mastercard (Overlap Bulatan Merah & Kuning) */
+.mastercard-logo {
+  display: flex;
+  align-items: center;
+}
+
+.mc-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  opacity: 0.95;
+}
+
+.mc-red {
+  background-color: #eb001b;
+}
+
+.mc-yellow {
+  background-color: #f79e1b;
+  margin-left: -10px;
+}
+
+.mc-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+}
+
+.generic-logo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 4px 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+/* Nomor Kartu di Kartu Depan */
+.card-number-display {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 18px 0;
+  position: relative;
+  z-index: 2;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.card-number-placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Footer Kartu Depan: Nama & Valid Thru */
+.card-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.card-holder-group {
+  max-width: 65%;
+}
+
+.card-label {
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.card-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #ffffff;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.expiry-group {
+  text-align: right;
+}
+
+/* KARTU BELAKANG */
+.card-back {
+  transform: rotateY(180deg);
+  padding: 0;
+  justify-content: flex-start;
+}
+
+/* Pita Magnetik Hitam */
+.card-magnetic-strip {
+  width: 100%;
+  height: 42px;
+  background: #0f141d;
+  margin-top: 24px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Container Strip CVV / Tanda Tangan */
+.card-back-body {
+  padding: 18px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 66px);
+  box-sizing: border-box;
+}
+
+.cvv-strip-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.signature-strip {
+  width: 100%;
+  height: 38px;
+  background: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 14px;
+  box-sizing: border-box;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #f1f5f9,
+    #f1f5f9 5px,
+    #e2e8f0 5px,
+    #e2e8f0 10px
+  );
+}
+
+.cvv-display {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+.card-back-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.masked-number-back {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Scaling */
+@media (max-width: 480px) {
+  .card-preview-container {
+    max-width: 320px;
+  }
+  .card-face {
+    padding: 18px 20px;
+  }
+  .card-number-display {
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+  }
+  .card-chip {
+    width: 38px;
+    height: 28px;
+  }
+}
