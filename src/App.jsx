@@ -41,13 +41,8 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <h1 className="main-title">
-          {phase === 1 ? 'Terminal Pembayaran Kartu' : 'Mesin ATM Interaktif'}
+          {phase === 1 ? 'Terminal Pembayaran Kartu' : 'Mesin ATM'}
         </h1>
-        <p className="main-subtitle">
-          {phase === 1
-            ? 'Masukkan informasi kartu Anda untuk memulai otentikasi di mesin terminal'
-            : 'Silakan masukkan 4 digit PIN Anda menggunakan tombol mesin di bawah ini'}
-        </p>
       </header>
 
       {phase === 1 ? (

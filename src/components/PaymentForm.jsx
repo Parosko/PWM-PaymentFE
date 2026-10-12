@@ -2,6 +2,52 @@ import React, { useState } from 'react';
 import './PaymentForm.css';
 import { formatCardNumber, formatExpiry, validateCardForm } from '../utils/cardValidation';
 
+// Vector SVG Icons for Form Fields
+const CardNumberIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="5" width="20" height="14" rx="2" />
+    <line x1="2" y1="10" x2="22" y2="10" />
+  </svg>
+);
+
+const UserIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
+
+const CalendarIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+    <line x1="16" y1="2" x2="16" y2="6" />
+    <line x1="8" y1="2" x2="8" y2="6" />
+    <line x1="3" y1="10" x2="21" y2="10" />
+  </svg>
+);
+
+const LockIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
+
+const ArrowRightIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+);
+
+const AlertIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="12" y1="8" x2="12" y2="12" />
+    <line x1="12" y1="16" x2="12.01" y2="16" />
+  </svg>
+);
+
 export const PaymentForm = ({
   cardNumber,
   setCardNumber,
@@ -71,8 +117,8 @@ export const PaymentForm = ({
     if (isValid) {
       setFormStatus({
         type: 'success',
-        title: 'Validation Successful!',
-        message: `Card number (${cardNumber}) is valid and verified.`
+        title: 'Verifikasi Berhasil',
+        message: 'Data kartu valid, mengalihkan ke mesin ATM...'
       });
       if (onValidSubmit) {
         onValidSubmit();
@@ -80,8 +126,8 @@ export const PaymentForm = ({
     } else {
       setFormStatus({
         type: 'error',
-        title: 'Validation Failed',
-        message: 'Please check the errors highlighted below and try again.'
+        title: 'Validasi Gagal',
+        message: 'Periksa kembali data kartu yang ditandai merah.'
       });
     }
   };
@@ -89,8 +135,7 @@ export const PaymentForm = ({
   return (
     <div className="payment-form-card">
       <div className="form-header">
-        <h2 className="form-title">Payment Details</h2>
-        <p className="form-subtitle">Enter your card credentials to validate details</p>
+        <h2 className="form-title">Informasi Kartu</h2>
       </div>
 
       {/* Form Input Pembayaran */}
@@ -98,14 +143,17 @@ export const PaymentForm = ({
         {/* Field Card Number */}
         <div className="form-field">
           <label htmlFor="cardNumber" className="form-label">
-            Card Number
+            Nomor Kartu
           </label>
           <div className="form-input-wrapper">
+            <span className="field-icon">
+              <CardNumberIcon />
+            </span>
             <input
               id="cardNumber"
               name="cardNumber"
               type="text"
-              className={`form-input ${errors.cardNumber ? 'has-error' : ''}`}
+              className={`form-input has-icon ${errors.cardNumber ? 'has-error' : ''}`}
               placeholder="4532 1234 5678 9012"
               value={cardNumber}
               onChange={handleCardNumberChange}
@@ -115,6 +163,7 @@ export const PaymentForm = ({
           </div>
           {errors.cardNumber && (
             <div className="error-message">
+              <AlertIcon />
               <span>{errors.cardNumber}</span>
             </div>
           )}
@@ -123,14 +172,17 @@ export const PaymentForm = ({
         {/* Field Card Holder */}
         <div className="form-field">
           <label htmlFor="cardHolder" className="form-label">
-            Card Holder Name
+            Nama Pemegang Kartu
           </label>
           <div className="form-input-wrapper">
+            <span className="field-icon">
+              <UserIcon />
+            </span>
             <input
               id="cardHolder"
               name="cardHolder"
               type="text"
-              className={`form-input ${errors.cardHolder ? 'has-error' : ''}`}
+              className={`form-input has-icon ${errors.cardHolder ? 'has-error' : ''}`}
               placeholder="e.g. FARIZKY AULIA"
               value={cardHolder}
               onChange={handleCardHolderChange}
@@ -139,6 +191,7 @@ export const PaymentForm = ({
           </div>
           {errors.cardHolder && (
             <div className="error-message">
+              <AlertIcon />
               <span>{errors.cardHolder}</span>
             </div>
           )}
@@ -149,14 +202,17 @@ export const PaymentForm = ({
           {/* Expiry Date */}
           <div className="form-field">
             <label htmlFor="expiryDate" className="form-label">
-              Valid Thru
+              Masa Berlaku
             </label>
             <div className="form-input-wrapper">
+              <span className="field-icon">
+                <CalendarIcon />
+              </span>
               <input
                 id="expiryDate"
                 name="expiryDate"
                 type="text"
-                className={`form-input ${errors.expiryDate ? 'has-error' : ''}`}
+                className={`form-input has-icon ${errors.expiryDate ? 'has-error' : ''}`}
                 placeholder="MM/YY"
                 value={expiryDate}
                 onChange={handleExpiryChange}
@@ -166,6 +222,7 @@ export const PaymentForm = ({
             </div>
             {errors.expiryDate && (
               <div className="error-message">
+                <AlertIcon />
                 <span>{errors.expiryDate}</span>
               </div>
             )}
@@ -174,14 +231,17 @@ export const PaymentForm = ({
           {/* CVV Input */}
           <div className="form-field">
             <label htmlFor="cvv" className="form-label">
-              CVV Code
+              Kode CVV
             </label>
             <div className="form-input-wrapper">
+              <span className="field-icon">
+                <LockIcon />
+              </span>
               <input
                 id="cvv"
                 name="cvv"
                 type="password"
-                className={`form-input ${errors.cvv ? 'has-error' : ''}`}
+                className={`form-input has-icon ${errors.cvv ? 'has-error' : ''}`}
                 placeholder="123"
                 value={cvv}
                 onChange={handleCvvChange}
@@ -193,6 +253,7 @@ export const PaymentForm = ({
             </div>
             {errors.cvv && (
               <div className="error-message">
+                <AlertIcon />
                 <span>{errors.cvv}</span>
               </div>
             )}
@@ -201,7 +262,8 @@ export const PaymentForm = ({
 
         {/* Tombol Submit */}
         <button type="submit" className="submit-btn">
-          <span>Gunakan Kartu</span>
+          <span>Lanjutkan ke ATM</span>
+          <ArrowRightIcon />
         </button>
 
         {/* Banner Status Hasil Validasi */}
