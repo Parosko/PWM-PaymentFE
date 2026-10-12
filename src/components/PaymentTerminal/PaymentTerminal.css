@@ -1,0 +1,978 @@
+/* PaymentTerminal.css - Realistic Bank ATM Kiosk Design (No harsh gradients) */
+
+.atm-kiosk-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  user-select: none;
+  animation: atmKioskAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+@keyframes atmKioskAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   ATM Chassis: Brushed Matte Steel / Slate Finish
+   ========================================================= */
+.atm-chassis {
+  width: 100%;
+  background: #1e293b;
+  border-radius: 20px;
+  border: 2px solid #334155;
+  box-shadow:
+    0 25px 50px -12px rgba(15, 23, 42, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 18px 20px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  /* Allow the card to render clearly on top when ejecting/pulled out */
+  overflow: visible;
+}
+
+/* Subtle ATM Kiosk Edge Highlight */
+.atm-chassis::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #38bdf8;
+  opacity: 0.8;
+  border-radius: 20px 20px 0 0;
+}
+
+/* =========================================================
+   ATM Top Marquee / Bank Fascia
+   ========================================================= */
+.atm-top-marquee {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+
+.atm-marquee-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.atm-bank-symbol {
+  width: 28px;
+  height: 28px;
+  background: #0284c7;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.bank-symbol-bars {
+  width: 4px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.atm-bank-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.atm-bank-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.atm-camera-module {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.atm-camera-lens {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #020617;
+  border: 2px solid #475569;
+  position: relative;
+  box-shadow: inset 0 0 4px #000;
+}
+
+.atm-camera-glint {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #38bdf8;
+  opacity: 0.7;
+}
+
+.atm-cam-label {
+  font-size: 0.55rem;
+  color: #64748b;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   ATM Screen Bezel & FDK Buttons (Left / Right)
+   ========================================================= */
+.atm-screen-bezel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0f172a;
+  border: 2px solid #334155;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.atm-fdk-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 18px;
+}
+
+.atm-fdk-button {
+  width: 26px;
+  height: 38px;
+  background: #334155;
+  border: 1px solid #475569;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #1e293b, inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.1s ease;
+  position: relative;
+}
+
+.atm-fdk-button:hover {
+  background: #3b495e;
+}
+
+.atm-fdk-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #1e293b;
+}
+
+/* =========================================================
+   ATM CRT / TFT Monitor Screen Display
+   ========================================================= */
+.atm-screen-display {
+  flex: 1;
+  background: #061e38; /* Classic ATM Navy Blue CRT Color */
+  border: 3px solid #0f3460;
+  border-radius: 8px;
+  min-height: 290px;
+  padding: 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.85);
+  color: #e2e8f0;
+  font-family: 'Poppins', monospace, sans-serif;
+}
+
+/* Retro ATM Scanlines (Subtle, non-harsh) */
+.atm-scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.12) 0px,
+    rgba(0, 0, 0, 0.12) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.atm-crt-curvature {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* Top Status Bar on ATM Screen */
+.atm-screen-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #7dd3fc;
+  border-bottom: 1px solid rgba(125, 211, 252, 0.2);
+  padding-bottom: 6px;
+  z-index: 5;
+}
+
+.atm-topbar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Steady green indicator, non-flickering */
+.atm-live-indicator {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 4px #22c55e;
+}
+
+.network-tag {
+  letter-spacing: 1px;
+  font-size: 0.68rem;
+  color: #93c5fd;
+}
+
+.atm-clock {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+}
+
+/* Center Body Content */
+.atm-screen-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 6px;
+  z-index: 5;
+  text-align: center;
+  flex: 1;
+}
+
+.atm-screen-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.atm-screen-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 8px 0 4px;
+  letter-spacing: 0.5px;
+}
+
+.atm-screen-subtitle {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+  max-width: 290px;
+  line-height: 1.4;
+}
+
+.atm-chip-read-notice,
+.atm-security-tag {
+  margin-top: 14px;
+  font-size: 0.68rem;
+  color: #38bdf8;
+  background: rgba(2, 132, 199, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+}
+
+.atm-security-tag.warning-text {
+  color: #facc15;
+  border-color: rgba(250, 204, 21, 0.4);
+  background: rgba(250, 204, 21, 0.1);
+}
+
+.atm-screen-icon-box {
+  margin-bottom: 6px;
+}
+
+.slot-visual-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-down-anim {
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounceDown 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes bounceDown {
+  from { transform: translateY(0); }
+  to { transform: translateY(6px); }
+}
+
+.eject-arrow-anim {
+  color: #facc15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounceUp 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes bounceUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+}
+
+.atm-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(56, 189, 248, 0.2);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: atmSpin 0.9s infinite linear;
+}
+
+@keyframes atmSpin {
+  to { transform: rotate(360deg); }
+}
+
+.atm-cardholder-display {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.atm-cardholder-display .label {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+.atm-cardholder-display .name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1.2px;
+}
+
+.atm-cardnum-display {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  color: #7dd3fc;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* PIN Input Boxes */
+.atm-pin-input-box {
+  display: flex;
+  gap: 14px;
+  margin: 16px 0 10px;
+}
+
+.atm-pin-cell {
+  width: 44px;
+  height: 48px;
+  background: #031427;
+  border: 2px solid #1e3a5f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #38bdf8;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.atm-pin-cell.active {
+  border-color: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.atm-pin-cell.filled {
+  border-color: #0ea5e9;
+  background: #062343;
+}
+
+.atm-pin-warning {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.atm-pin-warning .lock-icon {
+  display: flex;
+  align-items: center;
+  color: #7dd3fc;
+}
+
+/* Transaction Processing Bar */
+.atm-progress-track {
+  width: 220px;
+  height: 6px;
+  background: #031427;
+  border-radius: 3px;
+  margin-top: 16px;
+  overflow: hidden;
+  border: 1px solid #1e3a5f;
+}
+
+.atm-progress-bar {
+  width: 40%;
+  height: 100%;
+  background: #38bdf8;
+  border-radius: 3px;
+  animation: progressAnim 1.6s infinite ease-in-out;
+}
+
+@keyframes progressAnim {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+
+/* Success Mode */
+.atm-success-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4ade80;
+  margin-bottom: 10px;
+}
+
+.atm-check-ring {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.2);
+  border: 2px solid #22c55e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4ade80;
+}
+
+.atm-receipt-info {
+  background: #031427;
+  border: 1px solid #1e3a5f;
+  border-radius: 8px;
+  padding: 8px 14px;
+  width: 240px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.receipt-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  margin: 3px 0;
+  color: #cbd5e1;
+}
+
+.receipt-line .status-approved {
+  color: #4ade80;
+}
+
+.atm-action-buttons-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.atm-onscreen-btn {
+  background: #0284c7;
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.atm-onscreen-btn:hover {
+  background: #0369a1;
+  transform: translateY(-1px);
+}
+
+.atm-onscreen-btn:active {
+  transform: translateY(1px);
+}
+
+.atm-onscreen-btn.eject-action-btn {
+  background: #334155;
+  border-color: #64748b;
+}
+
+.atm-onscreen-btn.eject-action-btn:hover {
+  background: #475569;
+}
+
+/* Printed Receipt Preview */
+.atm-mini-receipt-preview {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  width: 250px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+  animation: receiptSlideDown 0.4s ease-out;
+}
+
+@keyframes receiptSlideDown {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.receipt-head {
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 6px;
+  font-size: 0.7rem;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px 0;
+}
+
+.receipt-divider {
+  text-align: center;
+  color: #94a3b8;
+  margin: 4px 0;
+}
+
+.receipt-foot {
+  text-align: center;
+  font-size: 0.62rem;
+  margin-top: 6px;
+  color: #64748b;
+}
+
+/* Screen Bottom Bar */
+.atm-screen-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: #64748b;
+  border-top: 1px solid rgba(125, 211, 252, 0.15);
+  padding-top: 6px;
+  z-index: 5;
+}
+
+/* =========================================================
+   ATM Console Shelf (Card Slot & Receipt Output)
+   ========================================================= */
+.atm-console-shelf {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 16px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 14px 16px;
+  position: relative;
+  overflow: visible;
+  z-index: 20;
+}
+
+.atm-hardware-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  overflow: visible;
+}
+
+.module-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.8px;
+}
+
+.card-slot-icon,
+.receipt-slot-icon {
+  display: flex;
+  align-items: center;
+  color: #38bdf8;
+}
+
+/* Realistic ATM Beveled Card Entry */
+.atm-card-slot-housing {
+  background: #020617;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  height: 90px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden; /* Clips the bottom portion of the card inside the machine body */
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.8);
+  z-index: 25;
+}
+
+/* Front physical mouth of the slot which sits OVER the card */
+.atm-slot-entry {
+  width: 90%;
+  height: 8px;
+  background: #000000;
+  border-radius: 4px;
+  border: 1px solid #475569;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 2px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Lower front lip panel that forms the bottom of the slot opening */
+.atm-slot-front-lip {
+  width: 100%;
+  height: 10px;
+  background: #020617;
+  border-top: 1px solid #334155;
+  position: relative;
+  z-index: 10;
+}
+
+/* Steady green guide line at slot */
+.atm-slot-green-guide {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+  opacity: 0.8;
+}
+
+/* Animated Physical Card in Slot */
+.atm-physical-card {
+  position: absolute;
+  top: 0;
+  width: 170px;
+  aspect-ratio: 1.586 / 1;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  color: #ffffff;
+  /* Normal resting z-index inside the slot */
+  z-index: 5;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+
+.atm-card-surface {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.atm-card-chip-gold {
+  width: 20px;
+  height: 15px;
+  background: #d97706;
+  border: 1px solid #b45309;
+  border-radius: 3px;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.atm-card-logo-stamp {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  letter-spacing: 1px;
+}
+
+.atm-card-number-emboss {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 1.2px;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+/* Card Animation States */
+.atm-physical-card.inserting {
+  z-index: 5; /* Card enters down behind slot front lip */
+  animation: atmCardInsert 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.atm-physical-card.inserted {
+  z-index: 5;
+  transform: translateY(38px) scale(0.92);
+  opacity: 0.95;
+}
+
+.atm-physical-card.ejecting {
+  /* When being ejected and pulled, it lifts above slot front lip */
+  z-index: 20;
+  animation: atmCardEject 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes atmCardInsert {
+  0% {
+    transform: translateY(-80px) scale(1);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-30px) scale(1);
+  }
+  100% {
+    transform: translateY(38px) scale(0.92);
+    opacity: 0.95;
+  }
+}
+
+@keyframes atmCardEject {
+  0% {
+    transform: translateY(38px) scale(0.92);
+    opacity: 0.95;
+  }
+  60% {
+    transform: translateY(-20px) scale(1);
+    opacity: 1;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    transform: translateY(-75px) scale(1.02);
+    opacity: 1;
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.85);
+  }
+}
+
+/* Receipt Slot Housing */
+.atm-receipt-slot-housing {
+  background: #020617;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.receipt-paper-entry {
+  width: 80%;
+  height: 6px;
+  background: #000000;
+  border: 1px solid #475569;
+  border-radius: 3px;
+}
+
+.dispensed-paper-anim {
+  position: absolute;
+  top: 15px;
+  width: 70%;
+  height: 48px;
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  animation: paperSlideOut 0.8s ease-out forwards;
+}
+
+@keyframes paperSlideOut {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   ATM Keypad Deck
+   ========================================================= */
+.atm-keypad-deck {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 12px 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.keypad-panel-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.sound-toggle-btn {
+  background: #1e293b;
+  border: 1px solid #475569;
+  color: #cbd5e1;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sound-toggle-btn.active {
+  color: #38bdf8;
+  border-color: #0284c7;
+}
+
+/* =========================================================
+   Cash Dispenser Safe Door (Decorative ATM element)
+   ========================================================= */
+.atm-cash-dispenser-door {
+  background: #0b1324;
+  border: 2px solid #334155;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.cash-door-bezel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.cash-slot-slit {
+  width: 85%;
+  height: 10px;
+  background: #020617;
+  border-radius: 3px;
+  border: 1px solid #475569;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+.cash-door-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .atm-kiosk-wrapper {
+    max-width: 100%;
+  }
+
+  .atm-chassis {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .atm-screen-bezel {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .atm-fdk-button {
+    width: 20px;
+    height: 32px;
+  }
+
+  .atm-screen-display {
+    min-height: 260px;
+    padding: 10px;
+  }
+
+  .atm-screen-title {
+    font-size: 1rem;
+  }
+
+  .atm-pin-cell {
+    width: 38px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
+
+  .atm-console-shelf {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

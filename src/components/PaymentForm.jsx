@@ -11,7 +11,8 @@ export const PaymentForm = ({
   setExpiryDate,
   cvv,
   setCvv,
-  setIsFlipped
+  setIsFlipped,
+  onValidSubmit
 }) => {
   const [errors, setErrors] = useState({});
   const [formStatus, setFormStatus] = useState(null);
@@ -73,6 +74,9 @@ export const PaymentForm = ({
         title: 'Validation Successful!',
         message: `Card number (${cardNumber}) is valid and verified.`
       });
+      if (onValidSubmit) {
+        onValidSubmit();
+      }
     } else {
       setFormStatus({
         type: 'error',
@@ -197,7 +201,7 @@ export const PaymentForm = ({
 
         {/* Tombol Submit */}
         <button type="submit" className="submit-btn">
-          <span>Validate Card</span>
+          <span>Gunakan Kartu</span>
         </button>
 
         {/* Banner Status Hasil Validasi */}
